@@ -93,8 +93,8 @@ body {
 }
 
 .fact-img {
-  width: 30rem;
-  height: 30rem;
+  width: 80%;
+  height: 80%;
   margin-bottom: 1rem;
   background-color: aliceblue;
   border-radius: 4rem;
@@ -102,7 +102,7 @@ body {
 
 .fact-text {
   display: inline-block;
-  width: 90%;
+  width: 95%;
   text-align: center;
   font-size: 1rem;
   padding: 1rem;
@@ -121,4 +121,32 @@ body {
 .footer-title {
   color: aliceblue;
   font-size: 2rem;
+}
+
+.fact-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.fact-controls button {
+  padding: 0.6rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: #030c2d;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+.fact-controls button:hover {
+  background-color: #3f475c;
+}
+
+.fact-controls button:disabled {
+  background-color: rgb(7, 17, 57);
+  cursor: default;
 }
