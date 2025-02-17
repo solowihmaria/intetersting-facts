@@ -21,7 +21,7 @@ const facts = {
       "Муравьи никогда не спят, но могут «останавливаться» на короткие перерывы.",
       "У акул нет костей — их скелет состоит только из хрящей.",
     ],
-    image: "./assets/animals.png",
+    image: "./assets/aimals.png",
   },
   ocean: {
     facts: [
@@ -50,13 +50,43 @@ const facts = {
 };
 
 let currentCategory = "cosmos";
+let factIndex = 0;
 
-function getRandomFact(category) {
-  const factsField = document.querySelector(".fact-text");
-  const imageField = document.querySelector(".fact-img");
-  const categoryFacts = facts[category].facts;
-  const randomIndex = Math.floor(Math.random() * categoryFacts.length);
+const factsField = document.querySelector(".fact-text");
+const imageField = document.querySelector(".fact-img");
+const categorySelect = document.querySelector(".facts-select");
+const prevBtn = document.querySelector(".prev-fact");
+const nextBtn = document.querySelector(".next-fact");
 
-  factsField.innerText = categoryFacts[randomIndex];
-  imageField.src = facts[category].image;
+function updateFact() {
+  const categoryFacts = facts[currentCategory].facts;
+  factsField.innerText = categoryFacts[factIndex];
+  imageField.src = facts[currentCategory].image;
+
+  prevBtn.disabled = factIndex === 0;
+  nextBtn.disabled = factIndex === categoryFacts.length - 1;
 }
+
+categorySelect.addEventListener("change", (event) => {
+  currentCategory = event.target.value;
+  factIndex = 0;
+  updateFact();
+});
+
+nextBtn.addEventListener("click", () => {
+  const categoryFacts = facts[currentCategory].facts;
+  if (factIndex < categoryFacts.length - 1) {
+    factIndex++;
+    updateFact();
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  const categoryFacts = facts[currentCategory].facts;
+  if (factIndex > 0) {
+    factIndex--;
+    updateFact();
+  }
+});
+
+updateFact();
